@@ -33,4 +33,7 @@ STYLES = {
         'initial_indent': '  | ',
         'subsequent_indent': '  | ' + ' ' * 7,
     },
+    'info': {
+        'fg': 'white'
+    },
 }

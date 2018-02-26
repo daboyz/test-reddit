@@ -91,11 +91,15 @@ def show_subreddits(subreddits):
 
 
 def show_submissions(submissions):
+    echo(u'Showing first {} submissions'.format(len(list(submissions))), **STYLES['info'])
+    echo()
     for submission in submissions:
         _show_submission(submission)
         _wait_input()
 
 
 def show_comments(comments):
+    echo(u'Showing first {} comments in tree'.format(len(comments)), **STYLES['info'])
+    echo()
     for comment in comments:
         _show_comment_tree(comment)
