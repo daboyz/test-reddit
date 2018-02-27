@@ -30,6 +30,15 @@ def cli():
 
 
 @cli.command()
+@click.argument('sort_order', metavar='<sort_order>', type=click.Choice(['popular', 'new', 'gold', 'default']))
+def top10(sort_order):
+    """Show top 10 subreddits in particular order"""
+
+    subreddits = api.list_subreddits(order=sort_order, limit=10)
+    ui.show_subreddits(subreddits)
+
+
+@cli.command()
 @click.argument('search_query', metavar='<search_query>')
 @click.option('--limit', '-l', default=20, help='Limit search results '
               '(default: 20)')

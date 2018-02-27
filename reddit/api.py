@@ -15,7 +15,7 @@ def _formalize_subreddit_name(name):
     return name
 
 
-def _api_call(path, params=None):
+def _api_call(path, params={}):
     """Request to reddit api."""
 
     resp = requests.get(u'{}/{}.json'.format(settings.REDDIT_API_URL, path),
@@ -26,6 +26,18 @@ def _api_call(path, params=None):
         raise RedditApiEror(message=resp.get('message', ''))
 
     return resp
+
+
+def list_subreddits(order='popular', limit=100):
+    """List subreddits in particular order"""
+
+    resp = _api_call(u'subreddits/{}'.format(order), {'limit': limit})
+    try:
+        children = resp['data']['children']
+        for item in children:
+            yield item['data']
+    except RedditException:
+        raise RedditApiError(message='Invalid response')
 
 
 def search_subreddits(query=None, limit=100):
@@ -47,7 +59,7 @@ def search_subreddits(query=None, limit=100):
 def get_submissions(subreddit_name, limit=100, order='top'):
     """Fetch submissions of subreddit."""
 
-    if order not in ['hot', 'new', 'rising', 'top', 'controversial']:
+    if order not in ['hot', 'new', 'top', 'controversial']:
         raise InvalidOption(message="wrong order argument")
 
     params = {'limit': limit}
