@@ -1,0 +1,8 @@
+[
+  "tests/test_app.py::TestSearch::()::test_search_positive",
+  "tests/test_app.py::TestSearch::()::test_search_two",
+  "tests/test_app.py::TestTop10::()::test_top10_positive",
+  "tests/test_app.py::TestTop10::()::test_top10_negative",
+  "tests/test_app.py::TestSubreddit::()::test_subreddit_positive",
+  "tests/test_app.py::TestSubreddit::()::test_subreddit_negative"
+]

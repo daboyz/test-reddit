@@ -37,6 +37,7 @@ def _show_submission(data):
     echo(u'{title}, {url}'.format(**data),  **STYLES['header'])
     echo(u'submitted {time} by {author}'.format(**data), **STYLES['author'])
     echo(u'submission id: {id}'.format(**data), **STYLES['regular'])
+    echo(u'submission score: {points}'.format(**data), **STYLES['regular'])      # Fixed missed display of points
     echo(u'link: https://redd.it/{id}'.format(**data), **STYLES['regular'])
     echo(u'comments: {num_comments}'.format(**data), **STYLES['regular'])
     click.echo()
@@ -91,7 +92,8 @@ def show_subreddits(subreddits):
 
 
 def show_submissions(submissions):
-    echo(u'Showing first {} submissions'.format(len(list(submissions))), **STYLES['info'])
+    #submissions = list(submissions)                 # Fixed bug with iterator being consumed by list length calculation
+    echo(u'Showing first {} submissions'.format(len(5)), **STYLES['info'])
     echo()
     for submission in submissions:
         _show_submission(submission)

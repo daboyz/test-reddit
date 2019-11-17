@@ -83,4 +83,4 @@ venv/
 ENV/
 
 # Idea settings
-.idea
+.idea/
